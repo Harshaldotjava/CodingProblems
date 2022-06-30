@@ -1,4 +1,4 @@
-
+from collections import deque
 
 class graph:
 	
@@ -15,15 +15,30 @@ class graph:
 		for node in nodes:
 			self.graph[node] = []
 	
-	def print(self):
+	def printadj(self):
 		for node,neighbours in self.graph.items():
-			print(node,"->",neighbours)
+			print(node,"->;",neighbours)
 			
-	
+	def BFS(self,s):
+			queue = deque()
+			visited = {}
+			for key in self.graph.keys():
+				visited[key] = False
+				
+			queue.append(s)
+			visited[s] = True
 			
+			while(len(queue)):
+				node = queue.popleft()
+				print(node,end="  ")
+				for neighbour in self.graph[node]:
+					if(not visited[neighbour]):
+						queue.append(neighbour)
+						visited[neighbour] = True
 			
 
-nodes = {2,4,5,6,9}
+nodes = {2,4,5,6,9
+}
 edges = [(2,6),(2,5),(2,4),
 				(4,2),(4,9),(5,6),(5,2),
 				(6,5),(6,2),
@@ -31,5 +46,6 @@ edges = [(2,6),(2,5),(2,4),
 			
 graph = graph(*nodes)
 graph.addEdge(*edges)
-graph.print()
+
+graph.BFS(9)
 
