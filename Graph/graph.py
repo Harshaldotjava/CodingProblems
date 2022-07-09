@@ -1,3 +1,4 @@
+#pylint:disable=W0621
 from collections import deque
 
 class graph:
@@ -35,10 +36,23 @@ class graph:
 					if(not visited[neighbour]):
 						queue.append(neighbour)
 						visited[neighbour] = True
-			
+	
+	def depth(self,s,visited):
+            print(s,end=" ")
+            visited.add(s)
+            for neighbour in self.graph[s]:
+            	if neighbour not in visited:
+            		self.depth(neighbour,visited)
+				    
 
-nodes = {2,4,5,6,9
-}
+	def DFS(self,s):
+			visited = set()
+			self.depth(s,visited)
+			
+			
+	
+nodes = {2,4,5,6,9}
+
 edges = [(2,6),(2,5),(2,4),
 				(4,2),(4,9),(5,6),(5,2),
 				(6,5),(6,2),
@@ -46,6 +60,5 @@ edges = [(2,6),(2,5),(2,4),
 			
 graph = graph(*nodes)
 graph.addEdge(*edges)
-
-graph.BFS(9)
+graph.DFS(9)
 
