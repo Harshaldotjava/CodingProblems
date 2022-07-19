@@ -1,0 +1,31 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+
+bool isomorphic(string s, string t){
+    map<char,string> mp;
+
+    for(int i=0; i<s.size()-1; i++){
+        mp[s[i]] += t[i];
+        cout<<t[i]<<endl;
+    }
+
+    for(auto i : mp){
+        char f = i.second[0];
+        cout<<i.second<<endl;
+        for(auto ch : i.second){
+      
+            if(f != ch)
+                return false;
+        }
+    }
+    return true;
+}
+
+int main(){
+
+    cout<<isomorphic("foo","bar")<<endl;
+
+    return 0;
+}
