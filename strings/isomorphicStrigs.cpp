@@ -24,7 +24,7 @@ bool isomorphic(string s, string t){
 
 int main(){
 
-    cout<<isomorphic("title","paper")<<endl;
+    cout<<isomorphic("title","p")<<endl;
 
     return 0;
 }
