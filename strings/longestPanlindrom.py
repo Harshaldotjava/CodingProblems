@@ -22,7 +22,7 @@ def longestPalin(str):
 
 	
 
-str = "keabaa"
+str = "abccccdd";
 
 t = longestPalin(str)
 print(t)
