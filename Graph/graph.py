@@ -38,11 +38,11 @@ class graph:
 						visited[neighbour] = True
 	
 	def depth(self,s,visited):
-            print(s,end=" ")
-            visited.add(s)
-            for neighbour in self.graph[s]:
-            	if neighbour not in visited:
-            		self.depth(neighbour,visited)
+    print(s,end=" ")
+    visited.add(s)
+    for neighbour in self.graph[s]:
+      if neighbour not in visited:
+        self.depth(neighbour,visited)
 				    
 
 	def DFS(self,s):
