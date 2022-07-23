@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <set>
 using namespace std;
 
 typedef vector<pair<int,int>> edges;
@@ -51,6 +52,33 @@ class Graph{
      	}
      	
      }
+     
+     vector<int> disjktra(int start){
+     	int n = this->graph.size();
+     	vector<int> visited(n,false);
+     	vector<int> distance(n,INT_MAX);
+     	set<pair<int,int>> st;
+     	st.insert({0,start});
+     	distance[start] = 0;
+     	while(st.size()>0){
+     		auto node = *st.begin();
+     		int v = node.second;
+     		int dist = node.first;
+     		st.erase(st.begin());
+     		if(visited[v]) continue;
+     		visited[v] = true;
+     		
+     		for(auto neighbour : this->graph[v]){
+     			int neigh_v = neighbour.first;
+     			int wt = neighbour.second;
+     			if(wt + dist < distance[neigh_v]){
+     			    distance[neigh_v] = wt + dist;
+     			    st.insert({wt+dist,neigh_v});
+     			}
+     		}	
+     	}
+     	return distance;		
+     }
      		
 };
 
@@ -58,37 +86,39 @@ class Graph{
 
 int main(){
 	
-	Graph g = Graph(6);
-	edges zero ={
-	  pair(5,1),pair(2,3),
-	  pair(1,5),pair(3,2)
-    };
-    
+	Graph g = Graph(7);
+	
     edges one = { 
-       pair(0,5),pair(3,7)
+       pair(2,1),pair(3,5)
     };
     
     edges two = {
-    	pair(0,3),pair(4,2)
+    	pair(3,1),pair(4,2),pair(5,1)
     };
     
     edges three = {
-      pair(0,2),pair(1,7)
+      pair(5,2)
     };
     edges four = {
-      pair(5,1),pair(2,2)
+      pair(6,1),pair(5,3)
     };
     edges five = {
-      pair(0,1),pair(4,1)
+      pair(6,2)
     };
       
-    g.addEdges(0,zero);
+   
     g.addEdges(1,one);
     g.addEdges(2,two);
     g.addEdges(3,three);
     g.addEdges(4,four);
     g.addEdges(5,five);
-	g.display();
+
+	
+	g.bst(1);
 	cout<<endl;
-	g.bst(2);
+	auto res = g.disjktra(1);
+	
+	for(auto i : res){
+		cout<<i<<" ";	
+	}
 }
