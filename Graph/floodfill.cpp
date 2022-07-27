@@ -22,6 +22,19 @@ vector<vector<int>> changeMatrixGraphValue(vector<vector<int>> g,int i,int j, in
 }
 
 
+
+// this function cointing component
+int numIsland(vector<vector<int>> &grid){
+	int ans = 0;
+	for(int i=0;i<grid.size();i++){
+		for(int j=0;i<grid[0].size();j++){
+			if(grid[i][j] == 0) continue;
+		    dfs(grid,i,j,grid[i][j],0);
+		}
+	}
+	return ans;
+}
+
 int main(int argc, char *argv[])
 {
 	
