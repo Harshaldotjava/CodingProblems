@@ -12,6 +12,6 @@ def isSubSequence(s,t):
 	return False
 	
 	
-print(isSubSequence("har","kwjsvsnllbalr"))
+print(isSubSequence("har","kwjsvs nllbalr"))
 			
 			
