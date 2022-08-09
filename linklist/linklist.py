@@ -1,30 +1,29 @@
-class Node:
-	
-	def __init__(self,val):
-		self.val = val
-		self.next = None
-		
-
+from node import Node
+val = Node(10)
 class Linklist:
 	
-	def __init__(self,val):
-		self.head = Node(val)
-		
-	def insert(self,val):
-		
+	def __init__(self,*values):
+		self.head = Node(None)
 		temp = self.head
-		while(temp.next != None):
+		for val in values:
+			temp.next = Node(val)
+			temp = temp.next
+		
+		self.head = self.head.next
+		
+	def __repr__(self):
+		temp = self.head
+
+		values = []
+		while temp:
+			values.append(str(temp.val))
 			temp = temp.next
 	
-		temp.next = Node(val)
+		return "[" + "-> ".join(values) + "]"
+	
+	
 		
-			
-	def display(self):
-		temp = self.head
-		while temp != None:
-			print(temp.val)
-			temp = temp.next
-			
-			
+		
+list = Linklist(1,2,3,5,1,5,7,5,4)
 
-
+print(list)
