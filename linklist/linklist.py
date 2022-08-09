@@ -1,5 +1,5 @@
 from node import Node
-val = Node(10)
+
 class Linklist:
 	
 	def __init__(self,*values):
@@ -22,8 +22,9 @@ class Linklist:
 		return "[" + "-> ".join(values) + "]"
 	
 	
-		
-		
-list = Linklist(1,2,3,5,1,5,7,5,4)
 
-print(list)
+		
+
+if __name__ == "__main__":
+	list = Linklist(1,2,3,5,1,5,7,5,4)
+	print(list)
