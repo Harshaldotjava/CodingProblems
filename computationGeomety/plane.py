@@ -43,13 +43,13 @@ count = 0
 while count != n:
   i = 0
   while i < 360:
-  	i += 2
+  	i += 3
   	screen.clearScreen()
   	for line in range(30):
   		x = ox
   		y = ox + line
   		new_point = rotate2D(x,y,i,ox,oy)
-  		screen.plot(new_point[0][0],new_point[1][0],"/")
+  		screen.plot(new_point.x,new_point.y,"/")
   		screen.plot(ox,oy,"o")
   	screen.render()
   	

@@ -2,6 +2,12 @@ import math
 from matrix import Matrix
 
 
+class Point:
+	
+	def __init__(self,x,y):
+		self.x = x
+		self.y = y
+		
 
 		
 def rotateY(x,y,z,deg):
@@ -28,12 +34,11 @@ def rotate2D(x,y,deg,ox,oy):
 	 [degCos,degSin],
 	 [degSin,degCos],
 	)
-	point = Matrix([x],[y])
-	point = rotationMatrix * point
-	point[0][0] = int(point[0][0])
-	point[1][0] = int(point[1][0])
-	point[0][0] += ox
-	point[1][0] += oy
+	product = Matrix([x],[y])
+	product = rotationMatrix * product
+	point = Point(int(product[0][0]),int(product[1][0]))
+	point.x += ox
+	point.y += oy
 	return point
 	
 	
