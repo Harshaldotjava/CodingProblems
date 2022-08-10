@@ -17,7 +17,7 @@ def rotateY(x,y,z,deg):
 	return rotationMatrix * point
 	
 	
-def rotateY2D(x,y,deg,ox,oy):
+def rotate2D(x,y,deg,ox,oy):
 	x -= ox
 	y -= oy
 	

@@ -1,43 +1,61 @@
-from rotation import rotateY2D
+
+from rotation import rotate2D
 from matrix import Matrix
 import time
 
 
-
-def render_screen(x,y):
-	print(x,y)
-	plane[y][x] = "@"
-	print('\x1b[H')	
-	for i in range(screen_height-1,-1,-1):
-		for j in range(screen_width):
-			print(plane[i][j],end= " ")
-		print()
-
-
+class Screen:
 	
+	def clearScreen(self):
+		self.screen =  [[" "]* self.width for i in range(self.height)]
+	
+	def __init__(self,height,width):
+		self.height = height
+		self.width = width
+		self.screen = [[" "]*width for i in range(height)]
+		
+	def render(self):
+		print('\x1b[H')	
+		for i in range(self.height-1,-1,-1):
+			for j in range(self.width):
+				print(self.screen[i][j],end=" ")
+			print()
+				
+	def plot(self,x,y,sym):
+		self.screen[y][x] = sym
+
+
+
 screen_height = 70
 screen_width = 70
-plane = [[" "]*screen_width for i in range(screen_height)]
+
 
 ox = screen_width//2
 oy = screen_height//2
 
-x = ox + 10
-y = oy
 
-plane[y][x] = "@"
-plane[ox][oy] = "@"
+screen = Screen(screen_height,screen_width)
 
 
-print("-------------------")
+n = int(input("how many rounds? "))
 
-while True:
-  for i in range(360):
-  	new_point = rotateY2D(x,y,i,ox,oy)
-
-  	render_screen(new_point[0][0],new_point[1][0])
+count = 0
+while count != n:
+  i = 0
+  while i < 360:
+  	i += 2
+  	screen.clearScreen()
+  	for line in range(30):
+  		x = ox
+  		y = ox + line
+  		new_point = rotate2D(x,y,i,ox,oy)
+  		screen.plot(new_point[0][0],new_point[1][0],"/")
+  		screen.plot(ox,oy,"o")
+  	screen.render()
+  	
+  count += 1
+  print(count)
   
-
 
 
 
