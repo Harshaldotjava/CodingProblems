@@ -6,7 +6,10 @@ class Matrix():
 		for row in rows:
 			self.matrix.append(row)
 			
-		
+			
+	def __repr__(self):
+		return str(self.matrix)
+			
 	def __getitem__(self,k):
 		return self.matrix[k]
 			
@@ -22,9 +25,12 @@ class Matrix():
 	   return ans
 	
 			
-			
-mat1 = Matrix([1,2,3,5],[1,5,7,4])
-mat2 = Matrix([5,8],[9,4],[1,5],[1,9])
+		
+	
+
+if __name__ == "__main__":
+	mat1 = Matrix([1,2,3,5],[1,5,7,4])
+	print(mat1)
 
 
 
