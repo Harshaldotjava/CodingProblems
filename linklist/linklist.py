@@ -36,4 +36,4 @@ class Linklist:
 if __name__ == "__main__":
 	
 	l = Linklist(1,2,3,5,1,5,7,5,4)
-	print(l[5])
+	print(l[5]) 
