@@ -11,7 +11,7 @@ class Point:
 
 		
 def rotateY(x,y,z,deg):
-	rad = math.radians(deg)
+	rad = deg
 	degSin = round(math.sin(rad),2)
 	degCos = round(math.cos(rad),2)
 	rotationMatrix = Matrix(
@@ -23,11 +23,13 @@ def rotateY(x,y,z,deg):
 	return rotationMatrix * point
 	
 	
+	
 def rotate2D(x,y,deg,ox,oy):
 	x -= ox
 	y -= oy
 	
 	rad = math.radians(deg)
+	rad = deg
 	degSin = math.sin(rad)
 	degCos = math.cos(rad)
 	rotationMatrix = Matrix(
