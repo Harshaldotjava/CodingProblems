@@ -22,7 +22,7 @@ class Screen:
 			print()
 				
 	def plot(self,x,y,sym):
-		self.screen[y][x] = sym
+		self.screen[x][y] = sym
 
 
 if __name__ == "__main__":
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 	  i = 0
 	  sec = 0
 	  while i < 2 * math.pi:
-	  	i += 0.0
+	  	i += 0.1
 	  	screen.clearScreen()
 	  	for line in range(30):
 	  		x = ox

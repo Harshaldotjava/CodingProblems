@@ -17,7 +17,7 @@ def donut(a,b):
 	sinb = math.sin(b)
 	theta = 0
 	while theta < math.pi * 2:
-		theta += 0.1
+		theta += 0.08
 		costheta = math.cos(theta)
 		sintheta = math.sin(theta)
 		phi = 0
