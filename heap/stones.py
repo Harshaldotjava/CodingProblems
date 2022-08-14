@@ -14,25 +14,28 @@ def heapify(arr,i):
 		arr[i] = temp
 		heapify(arr,largest)
 		
-		
+def heapi(arr):
+	for i in range(len(arr),-1,-1):
+		heapify(arr,i)		
 
-def stoneGame(stones):
-	for i in range(len(stones),-1,-1):
-		heapify(stones,i)
-	print(stones)
+def stoneGame(stones):	
+	heapi(stones)
 	while len(stones) > 1:
-		x = 1
-		y = 0
-		
-		if(stones[x] == stones[y]):
-			stones.pop(x)
-			stones.pop(y)
-		else:
-			stones[y] -= stones[x]
-			stones.pop(x)
-			heapify(stones,y)
-			
-	return  stones[0]
+		y = stones.pop(0)
+		heapi(stones)
+		x = stones.pop(0)
+		heapi(stones)
+		if x != y:
+			stones.append(y-x)
+			heapi(stones)
+	if len(stones) == 0:
+		return 0
+	return stones[0]
 	
 	
-print(stoneGame([1]))
+print(stoneGame([2,7,4,1,8,1]))
+	
+
+
+
+	
