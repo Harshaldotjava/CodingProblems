@@ -28,8 +28,7 @@ def stoneGame(stones):
 			stones.pop(x)
 			stones.pop(y)
 		else:
-			w = stones[y] - stones[x]
-			stones[y] = w 
+			stones[y] -= stones[x]
 			stones.pop(x)
 			heapify(stones,y)
 			
