@@ -17,9 +17,9 @@ def isHappy(n):
 	
 	s = set()
 	while True:
-		numbers = split(n)
+		n = split(n)
 		sum = 0
-		for number in numbers:
+		for number in n:
 			sum += number**2
 		if sum in s:
 			return False
@@ -31,6 +31,6 @@ def isHappy(n):
 		
 		
 lis = [1,2,3,4,5]
-print(isHappy(19))
+print(isHappy(17))
 
 		
