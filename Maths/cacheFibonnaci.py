@@ -1,3 +1,4 @@
+import time
 
 def cachefibo():
 	fib = [-1] * 100000
@@ -12,10 +13,19 @@ def cachefibo():
 	return func
 	
 	
-fibonacci = cachefibo()
+def fibgen(n):
+	fib = cachefibo()
+	for i in range(n):
+		yield fib(i)
+		
+fibs = fibgen(10)
+s = "hiiii"
+sgen = iter(s)
 
 
-print(fibonacci(10))
+
+
+
 
 
 	
