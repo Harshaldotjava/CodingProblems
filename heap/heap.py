@@ -40,7 +40,10 @@ class Heap:
 	def top(self):
 		if not self.empty():
 			return self.heap[0]
-		return None			
+		return None
+		
+	def size(self):
+		return len(self.heap)			
 
 class MinHeap(Heap):
 	def __heapify(cls,i):
