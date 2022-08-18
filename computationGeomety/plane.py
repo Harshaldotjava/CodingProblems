@@ -22,7 +22,7 @@ class Screen:
 			print()
 				
 	def plot(self,x,y,sym):
-		self.screen[x][y] = sym
+		self.screen[y][x] = sym
 
 
 if __name__ == "__main__":

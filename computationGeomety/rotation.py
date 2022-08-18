@@ -10,8 +10,8 @@ class Point:
 		
 
 		
-def rotateY(x,y,z,deg):
-	rad = deg
+def rotateY(x,y,z,rad):
+
 	degSin = round(math.sin(rad),2)
 	degCos = round(math.cos(rad),2)
 	rotationMatrix = Matrix(
