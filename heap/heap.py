@@ -64,6 +64,7 @@ class MinHeap(Heap):
 			
 	def push(self,val):
 		self.heap.append(val)
+
 		for i in range(len(self.heap)-1,-1,-1):
 			self.__heapify(i)
 

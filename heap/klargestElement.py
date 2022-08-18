@@ -1,10 +1,10 @@
-from heap import Heap
+from heap import MinHeap
 
 
 
 def klargestElement(arr,k):
 	
-	heap = Heap()
+	heap = MinHeap()
 	
 	for value in arr:
 		heap.push(value)
@@ -17,4 +17,4 @@ def klargestElement(arr,k):
 	return ans
 	
 	
-print(klargestElement([7,10,4,3,20,15],3))
+print(klargestElement([69,7,25,10,4,3,9,100,20,15],3))
