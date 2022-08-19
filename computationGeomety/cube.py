@@ -7,17 +7,22 @@ def isOdd(n):
 def square(n,screen):
 	if isOdd(n):
 		n += 1
-	
-	for y in range(n//2,(-n//2)-1,-1):
-		for i in range(-n//2,(n//2)+1):
-			x = i
-			for z in range(-(n//2),(n//2)+1):
-				print(x,y,z)
+		
+	x = -(n//2)
+	while x <= n//2:
+		x += 0.1
+		y = n//2
+		while y >= -(n//2):
+			y -= 0.1
+			xp = int(K1*x / K2) + 70//2
+			yp = int(K1*y / K2) + 70//2
+			
+			screen.plot(xp,yp,".")
 			
 
-
-K2 = 50
-K1 = 70*K2 * 3/(8*300)
+square_size = 4
+K2 = 10
+K1 = 70*K2 * 1/(2*square_size)
 screen = Screen(70,70)	
-square(4,screen)
-#screen.render()
+square(square_size,screen)
+screen.render()
