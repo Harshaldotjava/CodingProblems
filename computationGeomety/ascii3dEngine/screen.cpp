@@ -162,7 +162,7 @@ class Cube
 
 int main()
 {
-	AsciiEngine engine(100, 100, screen_size);
+	AsciiEngine engine(9990, 100, screen_size);
 
 	float theta = 0;
 	float phi = 0;
