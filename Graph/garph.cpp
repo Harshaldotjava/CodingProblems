@@ -42,33 +42,5 @@ int main(int argc, char *argv[])
 
 	vector<vector<int>> graph;
 	
-	for(int i=0;i<=v;i++){
-		vector<int> v;
-		graph.push_back(v);
-	}
-	
-	addEdge(graph,1,2);
-	addEdge(graph,2,1);
-	addEdge(graph,2,3);
-	addEdge(graph,2,4);
-	addEdge(graph,2,5);
-	addEdge(graph,3,2);
-	addEdge(graph,3,4);
-	addEdge(graph, 3,6);
-	addEdge(graph,4,3);
-	addEdge(graph,4,2);
-	addEdge(graph,5,2);
-	addEdge(graph,5,6);
-	addEdge(graph,6,5);
-	addEdge(graph,6,3);
-   bfs(graph,5);
-    /*
-    int pos = 0; 
-     for(auto i : graph){
-     	cout<<pos++<<"  ";
-		for(auto j : i)
-			cout<<j<<" ";
-		cout<<endl;
-     }
-     */
+
 }

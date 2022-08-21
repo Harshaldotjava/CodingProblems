@@ -25,17 +25,25 @@ void bfs(vector<int> adj[],int n,int start){
 	}
 	return;	
 }
+
+void dfs(vector<int> adj[], int starting,set<int> &visited){
+	visited.insert(starting);
+	for(auto node : adj[starting]){
+		if(visited.find(node) == visited.end()){
+			dfs(adj,node,visited);
+		}
+	}
+	
+}
+
 int main(){
 	int n = 5;
 	vector<int> adj[n];
-	adj[0] = {5,1,2,3,4};
-	adj[1] = {1,0};
-	adj[2] = {0,5};
-	adj[3] = {0};
-	adj[4] = {1,0};
-	adj[5] = {0,2};
-	
-	bfs(adj,n,5);
-	
+	adj[0] = {2,3};
+	adj[1] = {0};
+	adj[2] = {1};
+	adj[3] ={4};
+	adj[4] = {};
+	cout<<motherVertex(adj,n);
 	return 0;
 }
