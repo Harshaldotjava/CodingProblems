@@ -1,23 +1,27 @@
 #include <iostream>
 #include <math.h>
+#include <vector>
 using namespace std;
-#define PI 13.1415
 
+
+#define PI 13.1415
 #define screen_size 70
-class Screen
-{
+
+
+class Screen{
+	
 	char **matrix;
 	int n;
 	int m;
 
   public:
-	Screen(int n, int m)
-	{
+	Screen(int n, int m){
+		
 		this->n = n;
 		this->m = m;
 		this->matrix = new char *[n];
-		for (int i = 0; i < n; i++)
-		{
+		for (int i = 0; i < n; i++){
+			
 			this->matrix[i] = new char[m];
 			for (int j = 0; j < m; j++)
 				this->matrix[i][j] = ' ';
@@ -63,41 +67,79 @@ class Point3D
 		this->z = z;
 	}
 };
+class Cube
+{
+	public:
+	vector<Point3D> points;
+	Cube(){
+		
+		for(int y=20;y>=-20;y--){
+			for(int x = -20;x<=20;x++){
+			  if(x == 20 || x == -20 || y == 20 || y == -20)
+				points.push_back(Point3D(x,y,-20));
+			}
+		}
+		
+		for(int y=20;y>=-20;y--){
+			for(int x = -20;x<=20;x++){
+			  if(x == 20 || x == -20 || y == 20 || y == -20)
+				points.push_back(Point3D(x,y,20));
+			}
+		}
+		for(int y=20;y>=-20;y--){
+			for(int z= -20;z<=20;z++){
+			  if(z == 20 || z == -20 || y == 20 || y == -20)
+				points.push_back(Point3D(-20,y,z));
+			}
+		}
+		
+		for(int y=20;y>=-20;y--){
+			for(int z= -20;z<=20;z++){
+			  if(z == 20 || z == -20 || y == 20 || y == -20)
+				points.push_back(Point3D(20,y,z));
+			}
+		}
+		
+		for(int z=-20;z<=20;z++){
+		  
+			for(int x=-20;x<=20;x++){
+				if(x == 20 || x == -20 || z == 20 || z == -20)
+					points.push_back(Point3D(x,20,z));
+			}
+		}
+		
+		for(int z=-20;z<=20;z++){
+			for(int x=-20;x<=20;x++){
+			  if(x == 20 || x == -20 || z == 20 || z == -20)
+				points.push_back(Point3D(x,-20,z));
+			}
+		}
+		
+	}
+};
 
 // will do point translarion field of view other computations
 class AsciiEngine
 {
+	vector<vector<float>> zbuffer;
 	float Z0;
 	float K2;
 	float K1;
 	float object_length;
 	float resolution;
+	Cube object;
 
   public:
 	//
-	AsciiEngine(float distance_btw_objects_and_eye, float distance_between_screen_and_objects, float resolution){
-		
+	AsciiEngine(Cube object,float distance_btw_objects_and_eye, float distance_between_screen_and_objects, float resolution){
 		this->K2 = distance_btw_objects_and_eye;
 		this->K1 = resolution * K2 * 1 / (1 * distance_between_screen_and_objects);
 		this->object_length = distance_between_screen_and_objects;
 		this->resolution = resolution;
+		this->object = object;
+		this->zbuffer = vector<vector<float>>(resolution,vector<float>(resolution,0));
 	}
 
-	float getZ0()
-	{
-		return this->Z0;
-	}
-
-	void setDistanceBtwObject(float K2)
-	{
-		this->K2 += K2;
-	}
-	void fov(float fov)
-	{
-		this->K2 = fov;
-		this->K1 = resolution * fov * 1 / (1 * object_length);
-	
-	}
 
 	Point3D translate(Point3D orignal, Point3D translation)
 	{
@@ -150,48 +192,34 @@ class AsciiEngine
 	}
 };
 
-class Cube
-{
-	Point3D points[8];
 
-  public:
-	Cube()
-	{
-	}
-};
+
 
 int main()
 {
-	AsciiEngine engine(9990, 100, screen_size);
+	Cube cube = Cube();
+	AsciiEngine engine(cube, 90, 100, screen_size);
 
 	float theta = 0;
 	float phi = 0;
 	while (true)
-	{	
-		Point3D points[8];
-		points[0] = Point3D(20, 20, 20);
-		points[1] = Point3D(20, 20, -20);
-		points[2] = Point3D(20, -20, 20);
-		points[3] = Point3D(20, -20, -20);
-		points[4] = Point3D(-20, 20, 20);
-		points[5] = Point3D(-20, 20, -20);
-		points[6] = Point3D(-20, -20, 20);
-		points[7] = Point3D(-20, -20, -20);
-
+	{
+		Cube c = Cube();
 		theta += 0.02;
 		phi += 0.01;
 		Screen s(screen_size, screen_size);
-		for (int i = 0; i < 8; i++)
+		for (int i=0;i<c.points.size();i++)
 		{
-			points[i] = engine.rotationY(points[i], theta);
-			points[i] = engine.rotationX(points[i],phi);
-			points[i] = engine.applyPerspective(points[i]);
-	
-		    if ((points[i].x < screen_size && points[i].x > 0) && (points[i].y < screen_size && points[i].y > 0))
+			c.points[i] = engine.rotationY(c.points[i], theta);
+			c.points[i] = engine.rotationX(c.points[i],phi);
+			c.points[i] = engine.applyPerspective(c.points[i]);
+	         
+		    if ((c.points[i].x < screen_size && c.points[i].x > 0) && (c.points[i].y < screen_size && c.points[i].y > 0))
 			{
-				s.plot(points[i].x, points[i].y, 'i');
+				s.plot(c.points[i].x, c.points[i].y, '.');
 			}
 		}
+		
 		
 		
 		s.render();
