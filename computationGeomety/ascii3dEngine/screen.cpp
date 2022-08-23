@@ -127,17 +127,14 @@ class AsciiEngine
 	float K1;
 	float object_length;
 	float resolution;
-	Cube object;
 
   public:
 	//
-	AsciiEngine(Cube object,float distance_btw_objects_and_eye, float distance_between_screen_and_objects, float resolution){
+	AsciiEngine(float distance_btw_objects_and_eye, float distance_between_screen_and_objects, float resolution){
 		this->K2 = distance_btw_objects_and_eye;
-		this->K1 = resolution * K2 * 1 / (1 * distance_between_screen_and_objects);
+		this->K1 = resolution * K2 * 1/(1* distance_between_screen_and_objects);
 		this->object_length = distance_between_screen_and_objects;
 		this->resolution = resolution;
-		this->object = object;
-		this->zbuffer = vector<vector<float>>(resolution,vector<float>(resolution,0));
 	}
 
 
@@ -197,8 +194,7 @@ class AsciiEngine
 
 int main()
 {
-	Cube cube = Cube();
-	AsciiEngine engine(cube, 90, 100, screen_size);
+	AsciiEngine engine(100, 100, screen_size);
 
 	float theta = 0;
 	float phi = 0;
