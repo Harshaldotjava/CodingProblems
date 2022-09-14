@@ -125,16 +125,13 @@ class AsciiEngine
 	float Z0;
 	float K2;
 	float K1;
-	float object_length;
-	float resolution;
-
+	
   public:
 	//
 	AsciiEngine(float distance_btw_objects_and_eye, float distance_between_screen_and_objects, float resolution){
 		this->K2 = distance_btw_objects_and_eye;
 		this->K1 = resolution * K2 * 1/(1* distance_between_screen_and_objects);
-		this->object_length = distance_between_screen_and_objects;
-		this->resolution = resolution;
+	
 	}
 
 
@@ -194,7 +191,7 @@ class AsciiEngine
 
 int main()
 {
-	AsciiEngine engine(90, 100, screen_size);
+	AsciiEngine engine(90, 90, screen_size);
 
 	float theta = 0;
 	float phi = 0;
@@ -208,6 +205,7 @@ int main()
 		{
 			c.points[i] = engine.rotationY(c.points[i], theta);
 			c.points[i] = engine.rotationX(c.points[i],phi);
+			c.points[i] = engine.translate(c.points[i],Point3D(0,0,30));
 			c.points[i] = engine.applyPerspective(c.points[i]);
 	         
 		    if ((c.points[i].x < screen_size && c.points[i].x > 0) && (c.points[i].y < screen_size && c.points[i].y > 0))
