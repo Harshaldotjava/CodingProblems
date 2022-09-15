@@ -1,6 +1,7 @@
 #include <iostream>
 #include <math.h>
 #include <vector>
+#include <conio.h>
 using namespace std;
 
 
@@ -203,20 +204,44 @@ int main()
 		Screen s(screen_size, screen_size);
 		for (int i=0;i<c.points.size();i++)
 		{
-			c.points[i] = engine.rotationY(c.points[i], theta);
-			c.points[i] = engine.rotationX(c.points[i],phi);
-			c.points[i] = engine.translate(c.points[i],Point3D(0,0,30));
+			c.points[i] = engine.rotationY(c.points[i], yRot);
+			c.points[i] = engine.rotationX(c.points[i],xRot);
+			c.points[i] = engine.translate(c.points[i],Point3D(0,0,distance));
 			c.points[i] = engine.applyPerspective(c.points[i]);
 	         
 		    if ((c.points[i].x < screen_size && c.points[i].x > 0) && (c.points[i].y < screen_size && c.points[i].y > 0))
 			{
 				s.plot(c.points[i].x, c.points[i].y, '.');
 			}
+			
 		}
 		
 		
 		
 		s.render();
+		char input = getch();
+		switch(input){
+			case 'a':
+			  yRot += 0.1;
+			  break;
+			case 'd':
+			  yRot -= 0.1;
+			  break;
+			case 'w':
+			  xRot += 0.1;
+			  break;
+			case 's':
+			  xRot -= 0.1;
+			  break;
+		    case 'r':
+		      distance += 1;
+		      break;
+		    case 'f':
+		      distance -= 1;
+		      break;
+		}
+		
+		
 	}
 	return 0;
 }
