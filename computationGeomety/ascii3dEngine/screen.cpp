@@ -194,13 +194,12 @@ int main()
 {
 	AsciiEngine engine(90, 90, screen_size);
 
-	float theta = 0;
-	float phi = 0;
+	float yRot = 0;
+	float xRot = 0;
+	float distance = 0;
 	while (true)
 	{
 		Cube c = Cube();
-		theta += 0.02;
-		phi += 0.01;
 		Screen s(screen_size, screen_size);
 		for (int i=0;i<c.points.size();i++)
 		{
@@ -211,7 +210,7 @@ int main()
 	         
 		    if ((c.points[i].x < screen_size && c.points[i].x > 0) && (c.points[i].y < screen_size && c.points[i].y > 0))
 			{
-				s.plot(c.points[i].x, c.points[i].y, '.');
+				s.plot(c.points[i].x, c.points[i].y, '#');
 			}
 			
 		}
