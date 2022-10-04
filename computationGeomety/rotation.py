@@ -33,8 +33,8 @@ def rotate2D(x,y,deg,ox,oy):
 	degSin = math.sin(rad)
 	degCos = math.cos(rad)
 	rotationMatrix = Matrix(
-	 [degCos,-degSin],
-	 [degSin,degCos],
+	 [degCos,degSin],
+	 [-degSin,degCos],
 	)
 	product = Matrix([x],[y])
 	product = rotationMatrix * product
