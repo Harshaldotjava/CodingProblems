@@ -15,11 +15,11 @@ int knap(int w,int wt[],int val[],int n){
 	  
 		return max(
 	    val[n-1] + knap(w-wt[n-1],wt,val,n-1),
-		  knap(w-wt[n-1],wt,val,n-1) 
+		  knap(w,wt,val,n-1) 
   
 		  );            
 	}
-	return knap(w-wt[n-1],wt,val,n-1);
+	return knap(w,wt,val,n-1);
 
 }
 
