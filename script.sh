@@ -1,4 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 
-git commit -m "wow" 
+MESSAGE="new commit"
+
+git commit -m "$MESSAGE" 
