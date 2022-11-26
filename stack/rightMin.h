@@ -1,19 +1,18 @@
-#include <iostream>
 #include <stack>
 #include <vector>
-using namespace std;
+#include <utility>
 
-vector<int> minRight(int arr[],int n){
-	stack<pair<int,int>> st;
-	vector<int> ans(n,-1);
+std::vector<int> minRight(int arr[],int n){
+    std::stack<std::pair<int,int>> st;
+    std::vector<int> ans(n,-1);
 
 	for(int i = n-1; i!=-1; i--){
 		if(st.empty())
-			ans[i] = -1;
+			ans[i] = n;
 		else if(st.top().second >= arr[i]){
 			while(!st.empty() && st.top().second >= arr[i])
 				st.pop();
-			if(st.empty()) ans[i] = -1;
+			if(st.empty()) ans[i] = n;
 			else ans[i] = st.top().first;
 		}
 		else ans[i] = st.top().first;

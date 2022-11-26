@@ -1,11 +1,10 @@
-#include <iostream>
 #include <stack>
 #include <vector>
-using namespace std;
+#include <utility>
 
-vector<int> minLeft(int arr[],int n){
-	stack<pair<int,int>> st;
-	vector<int> ans(n,-1);
+std::vector<int> minLeft(int arr[],int n){
+    std::stack<std::pair<int,int>> st;
+    std::vector<int> ans(n,-1);
 
 	for(int i=0;i<n;i++){
 		if(st.empty()){
