@@ -9,46 +9,25 @@ string oneShift(string s){
     return result;
 }
 
-int solve(string s,int k){
-    string maxStr = "";
-    int found = 0;
-    int shifts  = 0;
-    for(int i=0;i<s.length();i++){
-        if(s > max){
-            maxStr = s;
-        }
-        s = oneShift(s);
-    }
-
-
-    while(true){
-        if(maxStr == s)
-            found++;
-
-        if(found == k) break;
-        s = oneShift(s);
-        shifts++;
-
-    }
-    
-
-    return shifts;
-}
-
 int solution2(string s,int k){
-    string max = "";
-    int d = 0;
+    string maxs = "";
+    int shifts = 0;
     int p = -1;
     for(int i=0;i<s.length();i++){
-        if(s > max){
-            max = s;
+        if(s > maxs){
+            maxs = s;
+            shifts = i;
         }
-        else if (max == s){
-            p = i - d;
+        else if (maxs == s){
+            p = i - shifts+1;
         }
         s = oneShift(s);
     }
-    return 0;
+    if(p == -1){
+        return shifts + s.length() * (k-1);
+    }
+
+    return shifts + s.length() * (k-1);
 }
 
 
