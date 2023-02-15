@@ -27,6 +27,6 @@ int uniquePathMemo(int m,int n){
 
 int main(int argc, char *argv[])
 {
-	cout<<uniquePathMemo(2,3);
+	cout<<uniquePathMemo(3,7);
 	
 }
